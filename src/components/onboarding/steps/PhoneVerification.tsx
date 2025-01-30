@@ -7,17 +7,28 @@ interface PhoneVerificationProps {
 
 const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [countryCode, setCountryCode] = useState('+254');
   const [verificationCode, setVerificationCode] = useState('');
   const [codeSent, setCodeSent] = useState(false);
 
   const handleSendCode = (e: React.FormEvent) => {
     e.preventDefault();
-    setCodeSent(true);
+    if (phoneNumber) {
+      setCodeSent(true);
+    }
   };
 
   const handleVerifyCode = (e: React.FormEvent) => {
     e.preventDefault();
-    onNext();
+    if (verificationCode) {
+      onNext();
+    }
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Only allow numbers
+    const value = e.target.value.replace(/\D/g, '');
+    setPhoneNumber(value);
   };
 
   return (
@@ -30,13 +41,15 @@ const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack })
             </label>
             <div className="mt-1 flex rounded-md shadow-sm">
               <select
+                value={countryCode}
+                onChange={(e) => setCountryCode(e.target.value)}
                 className="rounded-l-md border border-r-0 border-gray-300 bg-gray-50 py-2 px-3 text-sm"
               >
-                <option>+254</option>
-                <option>+234</option>
-                <option>+27</option>
-                <option>+233</option>
-                <option>+255</option>
+                <option value="+254">+254</option>
+                <option value="+234">+234</option>
+                <option value="+27">+27</option>
+                <option value="+233">+233</option>
+                <option value="+255">+255</option>
               </select>
               <input
                 type="tel"
@@ -44,11 +57,17 @@ const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack })
                 id="phone"
                 required
                 value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                onChange={handlePhoneChange}
                 className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="712 345 678"
+                maxLength={9}
               />
             </div>
+            {phoneNumber && (
+              <p className="mt-2 text-sm text-gray-600">
+                Your number: {countryCode} {phoneNumber}
+              </p>
+            )}
           </div>
 
           <div className="flex justify-between">
@@ -61,7 +80,8 @@ const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack })
             </button>
             <button
               type="submit"
-              className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              disabled={!phoneNumber || phoneNumber.length < 9}
+              className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Send Code
             </button>
@@ -79,12 +99,13 @@ const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack })
               id="code"
               required
               value={verificationCode}
-              onChange={(e) => setVerificationCode(e.target.value)}
+              onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ''))}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               placeholder="Enter 6-digit code"
+              maxLength={6}
             />
             <p className="mt-2 text-sm text-gray-500">
-              We've sent a verification code to your phone number
+              We've sent a verification code to {countryCode} {phoneNumber}
             </p>
           </div>
 
@@ -98,7 +119,8 @@ const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack })
             </button>
             <button
               type="submit"
-              className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              disabled={!verificationCode || verificationCode.length < 6}
+              className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Verify Code
             </button>
