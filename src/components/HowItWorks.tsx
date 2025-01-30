@@ -1,4 +1,3 @@
-import React from "react";
 import { UserPlus, Wallet, TrendingUp, BarChart } from "lucide-react";
 
 const steps = [
