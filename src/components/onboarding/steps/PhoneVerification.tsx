@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface PhoneVerificationProps {
   onNext: () => void;
   onBack: () => void;
 }
 
-const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack }) => {
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [countryCode, setCountryCode] = useState('+254');
-  const [verificationCode, setVerificationCode] = useState('');
+const PhoneVerification: React.FC<PhoneVerificationProps> = ({
+  onNext,
+  onBack,
+}) => {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [countryCode, setCountryCode] = useState("+254");
+  const [verificationCode, setVerificationCode] = useState("");
   const [codeSent, setCodeSent] = useState(false);
 
   const handleSendCode = (e: React.FormEvent) => {
@@ -26,17 +29,23 @@ const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack })
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Only allow numbers
-    const value = e.target.value.replace(/\D/g, '');
+    const value = e.target.value.replace(/\D/g, "");
     setPhoneNumber(value);
   };
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-lg mx-auto space-y-8 p-6 bg-white rounded-lg shadow-xl">
+      <h2 className="text-2xl font-semibold text-gray-800 text-center">
+        Phone Verification
+      </h2>
+
       {!codeSent ? (
         <form onSubmit={handleSendCode} className="space-y-6">
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-700"
+            >
               Phone Number
             </label>
             <div className="mt-1 flex rounded-md shadow-sm">
@@ -58,7 +67,7 @@ const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack })
                 required
                 value={phoneNumber}
                 onChange={handlePhoneChange}
-                className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 py-2 px-3 text-lg"
                 placeholder="712 345 678"
                 maxLength={9}
               />
@@ -74,14 +83,14 @@ const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack })
             <button
               type="button"
               onClick={onBack}
-              className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-6 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200"
             >
               Back
             </button>
             <button
               type="submit"
               disabled={!phoneNumber || phoneNumber.length < 9}
-              className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-6 text-sm font-medium text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Send Code
             </button>
@@ -90,7 +99,10 @@ const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack })
       ) : (
         <form onSubmit={handleVerifyCode} className="space-y-6">
           <div>
-            <label htmlFor="code" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="code"
+              className="block text-sm font-medium text-gray-700"
+            >
               Verification Code
             </label>
             <input
@@ -99,8 +111,10 @@ const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack })
               id="code"
               required
               value={verificationCode}
-              onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ''))}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              onChange={(e) =>
+                setVerificationCode(e.target.value.replace(/\D/g, ""))
+              }
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2 px-3 text-lg"
               placeholder="Enter 6-digit code"
               maxLength={6}
             />
@@ -113,14 +127,14 @@ const PhoneVerification: React.FC<PhoneVerificationProps> = ({ onNext, onBack })
             <button
               type="button"
               onClick={() => setCodeSent(false)}
-              className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-6 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200"
             >
               Back
             </button>
             <button
               type="submit"
               disabled={!verificationCode || verificationCode.length < 6}
-              className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-6 text-sm font-medium text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Verify Code
             </button>
