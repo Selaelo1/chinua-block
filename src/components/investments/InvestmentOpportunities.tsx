@@ -15,7 +15,7 @@ const InvestmentOpportunities = () => {
 
   const handleScroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = 300;
+      const scrollAmount = 300; // Adjust scroll amount for mobile
       const currentScroll = scrollRef.current.scrollLeft;
       if (direction === "left") {
         scrollRef.current.scrollTo({
@@ -41,7 +41,8 @@ const InvestmentOpportunities = () => {
       id="invest"
       className="min-h-screen flex items-center py-16 bg-blue-50"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      {/* Increased max-width to 90% of the viewport */}
+      <div className="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold text-blue-900 sm:text-4xl">
             Featured Investment Opportunities
@@ -52,6 +53,7 @@ const InvestmentOpportunities = () => {
         </div>
 
         <div className="relative mt-12">
+          {/* Left Arrow */}
           <button
             onClick={() => handleScroll("left")}
             className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 focus:outline-none z-10"
@@ -59,6 +61,7 @@ const InvestmentOpportunities = () => {
             <ChevronLeft className="h-6 w-6" />
           </button>
 
+          {/* Scrollable Container */}
           <div
             ref={scrollRef}
             className="flex space-x-8 overflow-x-auto scroll-smooth hide-scrollbar pb-4"
@@ -66,7 +69,7 @@ const InvestmentOpportunities = () => {
             {opportunities.map((opportunity) => (
               <div
                 key={opportunity.title}
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow flex-shrink-0 w-80"
+                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow flex-shrink-0 w-[90vw] sm:w-80" // Full width on mobile, fixed width on larger screens
               >
                 <div className="relative h-48">
                   <img
@@ -112,6 +115,7 @@ const InvestmentOpportunities = () => {
             ))}
           </div>
 
+          {/* Right Arrow */}
           <button
             onClick={() => handleScroll("right")}
             className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 focus:outline-none z-10"
