@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { ArrowUpRight, Globe2 } from "lucide-react";
 import Hero from "./Hero";
 import Features from "./Features";
-import InvestmentOpportunities from "./InvestmentOpportunities";
+import InvestmentOpportunities from "./investments/InvestmentOpportunities";
 import HowItWorks from "./HowItWorks";
 import Footer from "./Footer";
 
