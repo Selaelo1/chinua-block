@@ -7,6 +7,9 @@ import InvestmentOpportunities from './components/InvestmentOpportunities';
 import HowItWorks from './components/HowItWorks';
 import Footer from './components/Footer';
 import OnboardingPage from './components/onboarding/OnboardingPage';
+import DashboardLayout from './components/dashboard/DashboardLayout';
+import Overview from './components/dashboard/Overview';
+import Wallet from './components/dashboard/Wallet';
 
 function App() {
   return (
@@ -14,7 +17,12 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/onboarding" element={<OnboardingPage />} />
-        <Route path="/dashboard" element={<Navigate to="/" />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<Overview />} />
+          <Route path="wallet" element={<Wallet />} />
+          <Route path="investments" element={<Navigate to="/dashboard" />} />
+          <Route path="settings" element={<Navigate to="/dashboard" />} />
+        </Route>
       </Routes>
     </Router>
   );
