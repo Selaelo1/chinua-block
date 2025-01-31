@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Globe2 } from "lucide-react";
+import { Globe2, ArrowLeft } from "lucide-react"; // Import ArrowLeft for the back button
 import PersonalInfo from "./steps/PersonalInfo";
 import PhoneVerification from "./steps/PhoneVerification";
 import InvestmentPreferences from "./steps/InvestmentPreferences";
@@ -39,6 +39,10 @@ const OnboardingPage = () => {
 
   const handleComplete = () => {
     navigate("/dashboard");
+  };
+
+  const handleBackToHome = () => {
+    navigate("/"); // Navigate back to the landing page
   };
 
   const renderStep = () => {
@@ -81,6 +85,15 @@ const OnboardingPage = () => {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           {/* Header */}
           <div className="p-8 border-b border-gray-200">
+            {/* Back to Home Button */}
+            <button
+              onClick={handleBackToHome}
+              className="flex items-center text-blue-600 hover:text-blue-800 transition-colors mb-4"
+            >
+              <ArrowLeft className="h-5 w-5 mr-2" />
+              Back to Home
+            </button>
+
             <h2 className="text-2xl font-bold text-blue-900">
               Create Your Account
             </h2>
