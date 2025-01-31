@@ -94,7 +94,7 @@ const InvestmentOpportunities = () => {
                         Minimum Investment
                       </p>
                       <p className="text-lg font-medium text-blue-900">
-                        ${opportunity.minInvestment}
+                        {opportunity.minInvestment} tokens
                       </p>
                     </div>
                     <div className="text-right">
