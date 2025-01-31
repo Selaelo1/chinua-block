@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 
 interface InvestmentPreferencesProps {
@@ -96,7 +97,8 @@ const InvestmentPreferences: React.FC<InvestmentPreferencesProps> = ({
         </div>
       </div>
 
-      <div>
+      {/* 
+        <div>
         <label className="text-base font-medium text-gray-900">
           Monthly Investment Target
         </label>
@@ -109,13 +111,14 @@ const InvestmentPreferences: React.FC<InvestmentPreferencesProps> = ({
             onChange={(e) => setInvestmentAmount(e.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           >
-            <option value="50-500">$50 - $500</option>
+            <option value="50-500">100 - $500</option>
             <option value="501-1000">$501 - $1,000</option>
             <option value="1001-5000">$1,001 - $5,000</option>
             <option value="5000+">$5,000+</option>
           </select>
         </div>
-      </div>
+        </div> 
+        */}
 
       <div className="flex justify-between">
         <button
