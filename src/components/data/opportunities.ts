@@ -3,14 +3,14 @@ export const opportunities = [
   {
     title: "Gold Edge Property Development",
     type: "Real Estate",
-    minInvestment: 500,
+    minInvestment: 750,
     expectedReturn: "15-18%",
     image:
-      "https://images.unsplash.com/photo-1604014211263-7307f8c9f70c?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description:
       "A premium property development project with high-value residential properties in prime locations.",
     additionalImages: [
-      "https://images.unsplash.com/photo-1604014211263-7307f8c9f70c?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80",
     ],
@@ -19,7 +19,7 @@ export const opportunities = [
   {
     title: "Solar Farm in Cape Town",
     type: "Renewable Energy",
-    minInvestment: 50,
+    minInvestment: 200,
     expectedReturn: "12-15%",
     image:
       "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80",
@@ -30,7 +30,7 @@ export const opportunities = [
   {
     title: "Kenyan Coffee Harvest",
     type: "Agriculture",
-    minInvestment: 100,
+    minInvestment: 450,
     expectedReturn: "8-10%",
     image:
       "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80",
@@ -41,7 +41,7 @@ export const opportunities = [
   {
     title: "Lagos Tech Hub",
     type: "Real Estate",
-    minInvestment: 75,
+    minInvestment: 300,
     expectedReturn: "10-12%",
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
