@@ -1,13 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowUpRight, TrendingUp, DollarSign, Percent } from 'lucide-react';
+import { Link } from "react-router-dom";
+import { ArrowUpRight, TrendingUp, DollarSign, Percent } from "lucide-react";
 
 const Overview = () => {
   return (
     <div className="p-4 lg:p-8">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Welcome back!</h1>
-        <p className="text-gray-600">Here's what's happening with your investments</p>
+        <p className="text-gray-600">
+          Here's what's happening with your investments
+        </p>
       </div>
 
       {/* Stats */}
@@ -16,7 +17,9 @@ const Overview = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Total Balance</p>
-              <p className="text-xl lg:text-2xl font-bold text-gray-900">$0.00</p>
+              <p className="text-xl lg:text-2xl font-bold text-gray-900">
+                0 tokens
+              </p>
             </div>
             <div className="bg-blue-100 p-3 rounded-lg">
               <DollarSign className="h-6 w-6 text-blue-600" />
@@ -52,15 +55,23 @@ const Overview = () => {
       {/* Featured Investments */}
       <div>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-gray-900">Featured Investments</h2>
-          <Link to="/dashboard/investments" className="text-blue-600 hover:text-blue-700 flex items-center">
+          <h2 className="text-xl font-bold text-gray-900">
+            Featured Investments
+          </h2>
+          <Link
+            to="/dashboard/investments"
+            className="text-blue-600 hover:text-blue-700 flex items-center"
+          >
             View All <ArrowUpRight className="ml-1 h-4 w-4" />
           </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {featuredInvestments.map((investment) => (
-            <div key={investment.id} className="bg-white rounded-lg shadow overflow-hidden">
+            <div
+              key={investment.id}
+              className="bg-white rounded-lg shadow overflow-hidden"
+            >
               <img
                 src={investment.image}
                 alt={investment.title}
@@ -68,17 +79,25 @@ const Overview = () => {
               />
               <div className="p-4 lg:p-6">
                 <div className="flex items-center mb-2">
-                  <span className="text-sm font-medium text-blue-600">{investment.type}</span>
+                  <span className="text-sm font-medium text-blue-600">
+                    {investment.type}
+                  </span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{investment.title}</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {investment.title}
+                </h3>
                 <div className="flex justify-between items-center mb-4">
                   <div>
                     <p className="text-sm text-gray-500">Minimum</p>
-                    <p className="font-medium text-gray-900">${investment.minimum}</p>
+                    <p className="font-medium text-gray-900">
+                      {investment.minimum} tokens
+                    </p>
                   </div>
                   <div className="text-right">
                     <p className="text-sm text-gray-500">Expected Return</p>
-                    <p className="font-medium text-green-600">{investment.return}</p>
+                    <p className="font-medium text-green-600">
+                      {investment.return}
+                    </p>
                   </div>
                 </div>
                 <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
@@ -98,26 +117,46 @@ const featuredInvestments = [
     id: 1,
     title: "Solar Farm in Cape Town",
     type: "Renewable Energy",
-    minimum: 50,
+    minimum: 200,
     return: "12-15%",
-    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80"
+    image:
+      "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80",
+  },
+  {
+    id: 4,
+    title: "Gold Edge Property Development",
+    type: "Real Estate",
+    minInvestment: 750,
+    expectedReturn: "15-18%",
+    image:
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "A premium property development project with high-value residential properties in prime locations.",
+    additionalImages: [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80",
+    ],
+    pastPerformance: [10, 12, 14, 16, 18, 20, 22], // Example data for the graph
   },
   {
     id: 2,
     title: "Kenyan Coffee Harvest",
     type: "Agriculture",
-    minimum: 100,
+    minimum: 450,
     return: "8-10%",
-    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80"
+    image:
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80",
   },
   {
     id: 3,
     title: "Lagos Tech Hub",
     type: "Real Estate",
-    minimum: 75,
+    minimum: 300,
     return: "10-12%",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80"
-  }
+    image:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
+  },
 ];
 
 export default Overview;
