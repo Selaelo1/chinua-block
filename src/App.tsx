@@ -1,4 +1,3 @@
-// App.tsx
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -13,12 +12,13 @@ import Overview from "./components/dashboard/Overview";
 import Wallet from "./components/dashboard/Wallet";
 import InvestmentOpportunities from "./components/investments/InvestmentOpportunities";
 import InvestmentDetails from "./components/investments/InvestmentDetails";
+import Settings from "./components/dashboard/Settings"; // Corrected import
 
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        {/* Landing Page Route - Investment Opportunities are here too */}
+        {/* Landing Page Route */}
         <Route path="/" element={<LandingPage />} />
 
         {/* Onboarding Route */}
@@ -26,16 +26,19 @@ const App: React.FC = () => {
 
         {/* Dashboard Layout Route */}
         <Route path="/dashboard" element={<DashboardLayout />}>
+          {/* Default route for /dashboard */}
           <Route index element={<Overview />} />
+          {/* Nested routes under /dashboard */}
           <Route path="wallet" element={<Wallet />} />
-
-          {/* Investment Routes in Dashboard */}
           <Route path="investments" element={<InvestmentOpportunities />} />
-          <Route path="investment-details" element={<InvestmentDetails />} />
-
-          {/* Example for settings */}
-          <Route path="settings" element={<Navigate to="/dashboard" />} />
+          <Route path="investments/:id" element={<InvestmentDetails />} />{" "}
+          {/* Dynamic route for investment details */}
+          <Route path="settings" element={<Settings />} />{" "}
+          {/* Corrected settings route */}
         </Route>
+
+        {/* Fallback route for unmatched paths */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
