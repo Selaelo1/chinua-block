@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
-import { Globe2, Home, PieChart, Wallet, Settings, LogOut, Menu, X } from 'lucide-react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import {
+  Globe2,
+  Home,
+  PieChart,
+  Wallet,
+  Settings,
+  LogOut,
+  Menu,
+  X,
+} from "lucide-react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const DashboardLayout = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+
   const navigation = [
-    { name: 'Overview', href: '/dashboard', icon: Home },
-    { name: 'Investments', href: '/dashboard/investments', icon: PieChart },
-    { name: 'Wallet', href: '/dashboard/wallet', icon: Wallet },
-    { name: 'Settings', href: '/dashboard/settings', icon: Settings },
+    { name: "Overview", href: "/dashboard", icon: Home },
+    { name: "Investments", href: "/dashboard/investments", icon: PieChart },
+    { name: "Wallet", href: "/dashboard/wallet", icon: Wallet },
+    { name: "Settings", href: "/dashboard/settings", icon: Settings },
   ];
 
   const NavLinks = () => (
@@ -24,8 +33,8 @@ const DashboardLayout = () => {
             onClick={() => setIsMobileMenuOpen(false)}
             className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg ${
               isActive
-                ? 'bg-blue-50 text-blue-600'
-                : 'text-gray-600 hover:bg-gray-50'
+                ? "bg-blue-50 text-blue-600"
+                : "text-gray-600 hover:bg-gray-50"
             }`}
           >
             <item.icon className="h-5 w-5 mr-3" />
@@ -47,7 +56,9 @@ const DashboardLayout = () => {
         <div className="flex items-center justify-between h-full px-4">
           <div className="flex items-center">
             <Globe2 className="h-8 w-8 text-blue-600" />
-            <span className="ml-2 text-xl font-bold text-blue-900">ChanuaBlock</span>
+            <span className="ml-2 text-xl font-bold text-blue-900">
+              ChanuaBlock
+            </span>
           </div>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -66,8 +77,11 @@ const DashboardLayout = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-20 bg-gray-800 bg-opacity-50">
           <div className="fixed inset-y-0 right-0 w-64 bg-white shadow-xl">
-            <div className="p-4">
-              <NavLinks />
+            <div className="flex flex-col h-full">
+              {/* Add padding-top to account for the header height */}
+              <div className="flex-1 overflow-y-auto pt-20 pb-4 px-4">
+                <NavLinks />
+              </div>
             </div>
           </div>
         </div>
@@ -78,7 +92,9 @@ const DashboardLayout = () => {
         <div className="flex flex-col flex-grow bg-white border-r border-gray-200">
           <div className="flex items-center h-16 px-6 border-b border-gray-200">
             <Globe2 className="h-8 w-8 text-blue-600" />
-            <span className="ml-2 text-xl font-bold text-blue-900">ChanuaBlock</span>
+            <span className="ml-2 text-xl font-bold text-blue-900">
+              ChanuaBlock
+            </span>
           </div>
           <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
             <NavLinks />
