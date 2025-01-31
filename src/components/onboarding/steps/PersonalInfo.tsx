@@ -29,7 +29,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-lg mx-auto space-y-8 p-6 bg-white rounded-lg shadow-lg"
+      className="max-w-lg mx-auto space-y-8 p-6 bg-white rounded-lg" // Removed shadow-lg
     >
       <h2 className="text-2xl font-semibold text-gray-800 text-center">
         Personal Information
@@ -50,7 +50,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
             required
             value={formData.firstName}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3"
+            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base" // Adjust text size for mobile
           />
         </div>
 
@@ -68,7 +68,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
             required
             value={formData.lastName}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3"
+            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base" // Adjust text size for mobile
           />
         </div>
       </div>
@@ -87,7 +87,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
           required
           value={formData.email}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3"
+          className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base" // Adjust text size for mobile
         />
       </div>
 
@@ -104,7 +104,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
           required
           value={formData.country}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3"
+          className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base" // Adjust text size for mobile
         >
           <option value="">Select a country</option>
           <option value="KE">Kenya</option>
