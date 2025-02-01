@@ -1,14 +1,21 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
+import { opportunities } from "../data/opportunities";
 
 const InvestmentDetails = () => {
-  const location = useLocation();
+  const { id } = useParams(); // Get the id from the URL
   const navigate = useNavigate();
-  const { opportunity } = location.state;
+
+  // Find the opportunity by id
+  const opportunity = opportunities.find((op) => op.id === Number(id));
+
+  if (!opportunity) {
+    return <div>Investment opportunity not found.</div>;
+  }
 
   const handleGoBack = () => {
-    navigate("/"); // Navigate back to the main page
+    navigate(-1); // Navigate back to the previous page
   };
 
   return (
@@ -29,7 +36,7 @@ const InvestmentDetails = () => {
           <p className="mt-2 text-gray-600">{opportunity.description}</p>
           <div className="mt-6">
             <p className="text-sm text-gray-500">
-              Minimum Investment: ${opportunity.minInvestment}
+              Minimum Investment: {opportunity.minInvestment} tokens
             </p>
             <p className="text-sm text-gray-500">
               Expected Return: {opportunity.expectedReturn}
