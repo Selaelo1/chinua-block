@@ -119,7 +119,7 @@ const Overview = () => {
 
 const featuredInvestments = [
   {
-    id: 1,
+    id: 2,
     title: "Solar Farm in Cape Town",
     type: "Renewable Energy",
     minimum: 200,
@@ -130,7 +130,7 @@ const featuredInvestments = [
       "A solar farm project aimed at providing clean energy to the Cape Town region.",
   },
   {
-    id: 2,
+    id: 3,
     title: "Kenyan Coffee Harvest",
     type: "Agriculture",
     minimum: 450,
@@ -141,7 +141,7 @@ const featuredInvestments = [
       "Invest in the production of high-quality Kenyan coffee beans.",
   },
   {
-    id: 3,
+    id: 4,
     title: "Lagos Tech Hub",
     type: "Real Estate",
     minimum: 300,
@@ -152,15 +152,16 @@ const featuredInvestments = [
       "A state-of-the-art tech hub in Lagos, Nigeria, designed for startups and tech companies.",
   },
   {
-    id: 4,
+    id: 1,
     title: "Gold Edge Property Development",
     type: "Real Estate",
-    minimum: 750,
-    return: "15-18%",
-    image:
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    minInvestment: 750,
+    expectedReturn: "15-18%",
+    image: "../picture1.jpg",
     description:
       "A premium property development project with high-value residential properties in prime locations.",
+    additionalImages: ["../picture2.jpg", "../picture3.jpg", "../picture4.jpg"],
+    pastPerformance: [10, 12, 14, 16, 18, 20, 22], // Example data for the graph
   },
 ];
 
