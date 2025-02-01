@@ -6,7 +6,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
+import { useNavigate } from "react-router-dom";
 import { opportunities } from "../data/opportunities"; // Import opportunities from the new file
 
 const InvestmentOpportunities = () => {
@@ -31,9 +31,9 @@ const InvestmentOpportunities = () => {
     }
   };
 
-  const handleViewInfo = (opportunity: any) => {
-    // Navigate to the details page and pass the opportunity as state
-    navigate(`/investment-details`, { state: { opportunity } });
+  const handleViewInfo = (id: number) => {
+    // Navigate to the details page and pass the id via the URL
+    navigate(`/investment-details/${id}`);
   };
 
   return (
@@ -41,7 +41,6 @@ const InvestmentOpportunities = () => {
       id="invest"
       className="min-h-screen flex items-center py-16 bg-blue-50"
     >
-      {/* Increased max-width to 90% of the viewport */}
       <div className="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold text-blue-900 sm:text-4xl">
@@ -53,7 +52,6 @@ const InvestmentOpportunities = () => {
         </div>
 
         <div className="relative mt-12">
-          {/* Left Arrow */}
           <button
             onClick={() => handleScroll("left")}
             className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 focus:outline-none z-10"
@@ -61,15 +59,14 @@ const InvestmentOpportunities = () => {
             <ChevronLeft className="h-6 w-6" />
           </button>
 
-          {/* Scrollable Container */}
           <div
             ref={scrollRef}
             className="flex space-x-8 overflow-x-auto scroll-smooth hide-scrollbar pb-4"
           >
             {opportunities.map((opportunity) => (
               <div
-                key={opportunity.title}
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow flex-shrink-0 w-[90vw] sm:w-80" // Full width on mobile, fixed width on larger screens
+                key={opportunity.id} // Use the id as the key
+                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow flex-shrink-0 w-[90vw] sm:w-80"
               >
                 <div className="relative h-48">
                   <img
@@ -105,7 +102,7 @@ const InvestmentOpportunities = () => {
                     </div>
                   </div>
                   <button
-                    onClick={() => handleViewInfo(opportunity)} // Handle navigation
+                    onClick={() => handleViewInfo(opportunity.id)} // Pass id to navigate
                     className="mt-6 w-full bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
                   >
                     View Details <ArrowUpRight className="ml-2 h-4 w-4" />
@@ -115,7 +112,6 @@ const InvestmentOpportunities = () => {
             ))}
           </div>
 
-          {/* Right Arrow */}
           <button
             onClick={() => handleScroll("right")}
             className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 focus:outline-none z-10"
@@ -125,7 +121,6 @@ const InvestmentOpportunities = () => {
         </div>
       </div>
 
-      {/* Custom CSS to hide scrollbar */}
       <style>
         {`
           .hide-scrollbar::-webkit-scrollbar {
