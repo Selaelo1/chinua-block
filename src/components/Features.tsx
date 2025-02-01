@@ -4,7 +4,7 @@ import { Globe2, Wallet, BookOpen, Shield } from "lucide-react";
 const features = [
   {
     name: "Fractional Ownership",
-    description: "Invest in high-value global assets with as little as R00",
+    description: "Invest in high-value global assets with as little as R100",
     icon: Globe2,
   },
   {
