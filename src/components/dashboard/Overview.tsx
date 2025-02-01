@@ -152,16 +152,20 @@ const featuredInvestments = [
       "A state-of-the-art tech hub in Lagos, Nigeria, designed for startups and tech companies.",
   },
   {
-    id: 1,
-    title: "Gold Edge Property Development",
+    id: 1, // Unique ID added
+    title: "Gold Edge Emaar South",
     type: "Real Estate",
     minInvestment: 750,
     expectedReturn: "15-18%",
-    image: "../picture1.jpg",
+    image: "/picture1.jpg", // Corrected local image path
     description:
-      "A premium property development project with high-value residential properties in prime locations.",
-    additionalImages: ["../picture2.jpg", "../picture3.jpg", "../picture4.jpg"],
-    pastPerformance: [10, 12, 14, 16, 18, 20, 22], // Example data for the graph
+      "Emaar South is a thriving community where modern living meets natural tranquillity. With green parks, family-friendly amenities, and seamless connections to Dubai’s key landmarks, it’s a place where ambitions grow and families flourish.",
+    additionalImages: [
+      "/picture2.jpg", // Corrected local image path
+      "/picture3.jpg", // Corrected local image path
+      "/picture4.jpg", // Corrected local image path
+    ],
+    pastPerformance: [10, 12, 14, 16, 18, 20, 22],
   },
 ];
 
