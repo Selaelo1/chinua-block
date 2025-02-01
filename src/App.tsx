@@ -37,6 +37,8 @@ const App: React.FC = () => {
           {/* Corrected settings route */}
         </Route>
 
+        <Route path="/investment-details/:id" element={<InvestmentDetails />} />
+
         {/* Fallback route for unmatched paths */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
