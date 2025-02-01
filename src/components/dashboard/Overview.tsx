@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, TrendingUp, DollarSign, Percent } from "lucide-react";
 
@@ -100,9 +101,13 @@ const Overview = () => {
                     </p>
                   </div>
                 </div>
-                <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                <Link
+                  to={`/dashboard/investments/${investment.id}`} // Dynamic route
+                  state={{ opportunity: investment }} // Pass investment data as state
+                  className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
+                >
                   Learn More
-                </button>
+                </Link>
               </div>
             </div>
           ))}
@@ -121,23 +126,8 @@ const featuredInvestments = [
     return: "12-15%",
     image:
       "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80",
-  },
-  {
-    id: 4,
-    title: "Gold Edge Property Development",
-    type: "Real Estate",
-    minInvestment: 750,
-    expectedReturn: "15-18%",
-    image:
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description:
-      "A premium property development project with high-value residential properties in prime locations.",
-    additionalImages: [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80",
-    ],
-    pastPerformance: [10, 12, 14, 16, 18, 20, 22], // Example data for the graph
+      "A solar farm project aimed at providing clean energy to the Cape Town region.",
   },
   {
     id: 2,
@@ -147,6 +137,8 @@ const featuredInvestments = [
     return: "8-10%",
     image:
       "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80",
+    description:
+      "Invest in the production of high-quality Kenyan coffee beans.",
   },
   {
     id: 3,
@@ -156,6 +148,19 @@ const featuredInvestments = [
     return: "10-12%",
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
+    description:
+      "A state-of-the-art tech hub in Lagos, Nigeria, designed for startups and tech companies.",
+  },
+  {
+    id: 4,
+    title: "Gold Edge Property Development",
+    type: "Real Estate",
+    minimum: 750,
+    return: "15-18%",
+    image:
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "A premium property development project with high-value residential properties in prime locations.",
   },
 ];
 
