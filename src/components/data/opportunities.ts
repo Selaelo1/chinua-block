@@ -2,7 +2,7 @@
 export const opportunities = [
   {
     id: 1,  // Unique ID added
-    title: "Gold Edge Property Development",
+    title: "Gold Edge Emaar South",
     type: "Real Estate",
     minInvestment: 750,
     expectedReturn: "15-18%",
