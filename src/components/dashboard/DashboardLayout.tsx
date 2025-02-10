@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Globe2,
   Home,
   PieChart,
   Wallet,
   Settings,
-  LogOut,
   Menu,
   X,
 } from "lucide-react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import SignOut from "./SignOut";
 
 const DashboardLayout = () => {
   const location = useLocation();
@@ -42,10 +42,7 @@ const DashboardLayout = () => {
           </Link>
         );
       })}
-      <button className="flex items-center px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 rounded-lg w-full mt-4">
-        <LogOut className="h-5 w-5 mr-3" />
-        Sign Out
-      </button>
+      <SignOut onClose={() => setIsMobileMenuOpen(false)} className="mt-4" />
     </>
   );
 
@@ -78,7 +75,6 @@ const DashboardLayout = () => {
         <div className="lg:hidden fixed inset-0 z-20 bg-gray-800 bg-opacity-50">
           <div className="fixed inset-y-0 right-0 w-64 bg-white shadow-xl">
             <div className="flex flex-col h-full">
-              {/* Add padding-top to account for the header height */}
               <div className="flex-1 overflow-y-auto pt-20 pb-4 px-4">
                 <NavLinks />
               </div>
