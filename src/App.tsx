@@ -6,40 +6,52 @@ import {
   Navigate,
 } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
+import Login from "./components/auth/Login";
 import OnboardingPage from "./components/onboarding/OnboardingPage";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
 import Overview from "./components/dashboard/Overview";
 import Wallet from "./components/dashboard/Wallet";
+import Settings from "./components/dashboard/Settings";
 import InvestmentOpportunities from "./components/investments/InvestmentOpportunities";
 import InvestmentDetails from "./components/investments/InvestmentDetails";
-import Settings from "./components/dashboard/Settings"; // Corrected import
 
-const App: React.FC = () => {
+// Protected Route component
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  return <>{children}</>;
+};
+
+const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Landing Page Route */}
+        {/* Public Routes */}
         <Route path="/" element={<LandingPage />} />
-
-        {/* Onboarding Route */}
+        <Route path="/login" element={<Login />} />
         <Route path="/onboarding" element={<OnboardingPage />} />
 
-        {/* Dashboard Layout Route */}
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          {/* Default route for /dashboard */}
+        {/* Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Overview />} />
-          {/* Nested routes under /dashboard */}
           <Route path="wallet" element={<Wallet />} />
           <Route path="investments" element={<InvestmentOpportunities />} />
-          <Route path="investments/:id" element={<InvestmentDetails />} />{" "}
-          {/* Dynamic route for investment details */}
-          <Route path="settings" element={<Settings />} />{" "}
-          {/* Corrected settings route */}
+          <Route path="investments/:id" element={<InvestmentDetails />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
 
-        <Route path="/investment-details/:id" element={<InvestmentDetails />} />
-
-        {/* Fallback route for unmatched paths */}
+        {/* Fallback route */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
