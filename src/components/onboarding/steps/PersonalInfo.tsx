@@ -9,11 +9,46 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
     firstName: "",
     lastName: "",
     email: "",
+    password: "",
+    confirmPassword: "",
     country: "",
+  });
+
+  const [errors, setErrors] = useState({
+    password: "",
+    confirmPassword: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate passwords
+    if (formData.password.length < 8) {
+      setErrors({
+        ...errors,
+        password: "Password must be at least 8 characters long",
+      });
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setErrors({
+        ...errors,
+        confirmPassword: "Passwords do not match",
+      });
+      return;
+    }
+
+    // Store user data
+    const userData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      password: formData.password,
+      country: formData.country,
+    };
+
+    localStorage.setItem("registeredUser", JSON.stringify(userData));
     onNext();
   };
 
@@ -24,15 +59,20 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+
+    // Clear errors when user types
+    if (e.target.name === "password" || e.target.name === "confirmPassword") {
+      setErrors((prev) => ({
+        ...prev,
+        [e.target.name]: "",
+      }));
+    }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-lg mx-auto space-y-8 p-6 bg-white rounded-lg" // Removed shadow-lg
-    >
+    <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6">
       <h2 className="text-2xl font-semibold text-gray-800 text-center">
-        Personal Information
+        Create Your Account
       </h2>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -50,7 +90,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
             required
             value={formData.firstName}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base" // Adjust text size for mobile
+            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base"
           />
         </div>
 
@@ -68,7 +108,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
             required
             value={formData.lastName}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base" // Adjust text size for mobile
+            className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base"
           />
         </div>
       </div>
@@ -87,8 +127,50 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
           required
           value={formData.email}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base" // Adjust text size for mobile
+          className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base"
         />
+      </div>
+
+      <div>
+        <label
+          htmlFor="password"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Password
+        </label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          value={formData.password}
+          onChange={handleChange}
+          className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base"
+        />
+        {errors.password && (
+          <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+        )}
+      </div>
+
+      <div>
+        <label
+          htmlFor="confirmPassword"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Confirm Password
+        </label>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          required
+          value={formData.confirmPassword}
+          onChange={handleChange}
+          className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base"
+        />
+        {errors.confirmPassword && (
+          <p className="mt-1 text-sm text-red-600">{errors.confirmPassword}</p>
+        )}
       </div>
 
       <div>
@@ -104,7 +186,7 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ onNext }) => {
           required
           value={formData.country}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base" // Adjust text size for mobile
+          className="mt-1 block w-full rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 text-lg p-3 sm:text-base"
         >
           <option value="">Select a country</option>
           <option value="KE">Kenya</option>
