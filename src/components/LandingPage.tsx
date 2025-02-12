@@ -1,14 +1,16 @@
-// components/LandingPage.tsx
 import React, { useState } from "react";
 import { ArrowUpRight, Globe2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Hero from "./Hero";
 import Features from "./Features";
 import InvestmentOpportunities from "./investments/InvestmentOpportunities";
 import HowItWorks from "./HowItWorks";
+import FAQ from "./FAQ";
 import Footer from "./Footer";
 
 const LandingPage: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   // Toggle mobile menu
   const toggleMobileMenu = () => {
@@ -18,6 +20,10 @@ const LandingPage: React.FC = () => {
   // Close mobile menu when a link is clicked
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleGetStarted = () => {
+    navigate("/login");
   };
 
   return (
@@ -47,12 +53,15 @@ const LandingPage: React.FC = () => {
               >
                 How it Works
               </a>
-              <a
-                href="/onboarding"
+              <a href="#faq" className="text-blue-900 hover:text-blue-600">
+                FAQ
+              </a>
+              <button
+                onClick={handleGetStarted}
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-blue-700 transition-colors"
               >
                 Get Started <ArrowUpRight className="ml-2 h-4 w-4" />
-              </a>
+              </button>
             </div>
             <button
               className="md:hidden focus:outline-none"
@@ -104,12 +113,21 @@ const LandingPage: React.FC = () => {
               How it Works
             </a>
             <a
-              href="/onboarding"
-              className="block bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-blue-700 transition-colors"
+              href="#faq"
+              className="block text-blue-900 hover:text-blue-600"
               onClick={closeMobileMenu}
             >
-              Get Started <ArrowUpRight className="ml-2 h-4 w-4" />
+              FAQ
             </a>
+            <button
+              onClick={() => {
+                closeMobileMenu();
+                handleGetStarted();
+              }}
+              className="block bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-blue-700 transition-colors"
+            >
+              Get Started <ArrowUpRight className="ml-2 h-4 w-4" />
+            </button>
           </div>
         </div>
       </nav>
@@ -120,6 +138,7 @@ const LandingPage: React.FC = () => {
         <Features />
         <InvestmentOpportunities />
         <HowItWorks />
+        <FAQ />
       </main>
 
       {/* Footer */}
