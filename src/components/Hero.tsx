@@ -1,7 +1,13 @@
-import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate("/login");
+  };
+
   return (
     <div className="min-h-screen flex items-center pt-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-white to-blue-50">
       <div className="max-w-7xl mx-auto w-full">
@@ -13,10 +19,15 @@ const Hero = () => {
               <span className="block">Access for Africa</span>
             </h1>
             <p className="mt-3 text-base text-gray-600 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-              Start investing in global assets with as little as $50. Join millions of Africans building wealth through blockchain-powered investments.
+              Start investing in global assets with as little as $50. Join
+              millions of Africans building wealth through blockchain-powered
+              investments.
             </p>
             <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left">
-              <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors">
+              <button
+                onClick={handleGetStarted}
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+              >
                 Start Investing Now
                 <ArrowUpRight className="ml-2 h-5 w-5" />
               </button>
