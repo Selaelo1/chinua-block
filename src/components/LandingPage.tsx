@@ -3,6 +3,7 @@ import { ArrowUpRight, Globe2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Hero from "./Hero";
 import Features from "./Features";
+import UseCases from "./UseCases";
 import InvestmentOpportunities from "./investments/InvestmentOpportunities";
 import HowItWorks from "./HowItWorks";
 import FAQ from "./FAQ";
@@ -12,12 +13,10 @@ const LandingPage: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Close mobile menu when a link is clicked
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
@@ -136,6 +135,7 @@ const LandingPage: React.FC = () => {
       <main className="pt-16">
         <Hero />
         <Features />
+        <UseCases />
         <InvestmentOpportunities />
         <HowItWorks />
         <FAQ />
